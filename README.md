@@ -1,6 +1,6 @@
 # CLI weather app in Go
 
-This CLI application is writen in Go laguage.
+This CLI application is writen in Go language.
 
 ## Installation
 
@@ -16,7 +16,7 @@ This CLI application is writen in Go laguage.
     `go install weather.go`  
     This will make the binary accessible and executable system wide.
 
-## Setup
+## Setup and Config file ##
 
 You have first to create an account on [WeatherAPI](https://www.weatherapi.com/) and insert your API key in a `config.json` file. You can also set there the default values for other variables.
 
@@ -52,7 +52,7 @@ The path to `config.json` file is to be set in the `Config` section of `weather.
     -f  bool     Print tomorrow's forecast        false
     -v  bool     Print version                    false
 
-The default value for the `language flag` can be changed in the `config.json` file.
+The default values for the flags can be changed in your [config.json file](#Setup-and-config-file)
 
 
 ## Examples
