@@ -30,8 +30,8 @@ import (
 )
 
 const (
-	configFile = "config.json"
-	ver        = "1.0"
+	configFile = "/your/path/to/config.json"
+	ver        = "1.1"
 )
 
 // Config struct

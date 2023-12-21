@@ -19,7 +19,7 @@
 You have first to create an account on [WeatherAPI](https://www.weatherapi.com/) and insert your API key in the `config.json` file. You can also set there the default values for other variables.
 
     {
-    "APIkey": "f8zfzfzf- D U M M Y -z45d5d21r",
+    "APIkey": "your_api_key_here",
     "defaultCity": "Brussels",
     "defaultDaysForecast": 5,
     "defaultThresholdRain": 60,
