@@ -1,16 +1,3 @@
-/*
-
-API DOC
-	https://www.weatherapi.com/api-explorer.aspx
-	https://www.weatherapi.com/docs/#intro-request
-
-API Analytics
-	https://www.weatherapi.com/my/analytics.aspx
-
-JSON stuct in utils pkg
-
-*/
-
 package main
 
 import (
@@ -30,7 +17,7 @@ import (
 )
 
 const (
-	configFile = "/your/path/to/config.json"
+	configFile = "/path/to/config.json"
 	ver        = "1.1"
 )
 

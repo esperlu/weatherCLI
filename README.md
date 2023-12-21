@@ -85,4 +85,5 @@ The default value for the `language flag` can be changed in the `Flags` section 
 
 ## Wheather data source
 
-API provided by [Weather API](weatherapi.com)
+- API provided by [Weather API](weatherapi.com)
+- WeatherAPI Docs [Weather API](https://www.weatherapi.com/docs/)
