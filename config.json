@@ -1,0 +1,8 @@
+{
+  "APIkey": "your_key_heree",
+  "defaultCity": "Brussels",
+  "defaultDaysForecast": 5,
+  "defaultThresholdRain": 60,
+  "defaultTomorrowForecast": false,
+  "defaultLanguage": "fr"
+}
