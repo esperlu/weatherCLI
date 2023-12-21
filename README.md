@@ -57,7 +57,7 @@ The default values for the flags can be changed in your [config.json file](#Setu
 
 ## Examples
 
-To get the Berlin's current weather and forecast for the next 3 days in German language with the probability for rain threshold set to 60%:
+To get the Berlin's current weather and forecast for the next 3 days in German language with the probability threshold for rain set to 60%:
 
     $ weather -l de -t 60 -d 3 Berlin
 
