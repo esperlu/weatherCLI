@@ -61,7 +61,7 @@ To get the Berlin's current weather and forecast for the next 3 days in German l
 
     $ weather -l de -t 60 -d 3 Berlin
 
-    Will return
+Will return:
 
     Berlin - Germany (52.52,13.40) 08:15-15:54 
     18:00 230/31 10000 leichter Regenfall 7/6 93% Q994 [3°]
