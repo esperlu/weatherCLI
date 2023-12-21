@@ -16,18 +16,24 @@
 
 ## Setup
 
-You have first to create an account on [WeatherAPI](https://www.weatherapi.com/) and insert your API key in the `config.json` file. You can also set there the default values for other variables.
+You have first to create an account on [WeatherAPI](https://www.weatherapi.com/) and insert your API key in a `config.json` file. You can also set there the default values for other variables.
 
     {
-    "APIkey": "your_api_key_here",
-    "defaultCity": "Brussels",
-    "defaultDaysForecast": 5,
-    "defaultThresholdRain": 60,
-    "defaultTomorrowForecast": false,
-    "defaultLanguage": "fr"
+        "APIkey": "your_api_key_here",
+        "defaultCity": "Brussels",
+        "defaultDaysForecast": 5,
+        "defaultThresholdRain": 60,
+        "defaultTomorrowForecast": false,
+        "defaultLanguage": "fr"
     }
 
+The path to `config.json` file is to be set in the `//Config` section of `weather.go`
 
+    // Config
+    const (
+        configFile = "/path/to/config.json"
+        ver        = "1.1"
+    )
 
 
 ## Usage
@@ -54,6 +60,8 @@ The default value for the `language flag` can be changed in the `Flags` section 
 	version := flag.Bool("v", false, "Version")
 
 ## Examples
+
+To get the Berlin's current weather and forecast for the next 3 days in German language with the probability for rain threshold set to 60%:
 
     $ weather -l de -t 60 -d 3 Berlin
 
