@@ -1,0 +1,8 @@
+{
+  "APIkey": "f8zfzf YOUR API KEY HERE 5d21r",
+  "defaultCity": "Brussels",
+  "defaultDaysForecast": 5,
+  "defaultThresholdRain": 60,
+  "defaultTomorrowForecast": false,
+  "defaultLanguage": "fr"
+}

@@ -1,0 +1,48 @@
+[
+    {
+        "code": "en",
+        "sunday": "Sunday",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday"
+    },
+    {
+        "code": "fr",
+        "sunday": "Dimanche",
+        "monday": "Lundi",
+        "tuesday": "Mardi",
+        "wednesday": "Mercredi",
+        "thursday": "Jeudi",
+        "friday": "Vendredi",
+        "saturday": "Samedi",
+        "rain": "pluie",
+        "humidity": "humidité"
+    },
+    {
+        "code": "sp",
+        "Sunday": "Domingo",
+        "Monday": "Lunes",
+        "Tuesday": "Martes",
+        "Wednesday": "Miercoles",
+        "Thursday": "Jueves",
+        "Friday": "Viernes",
+        "Saturday": "Sabado",
+        "rain": "lluvia",
+        "humidity": "humedad"
+    },
+    {
+        "code": "de",
+        "sunday": "Sonntag",
+        "monday": "Montag",
+        "tuesday": "Dienstag",
+        "wednesday": "Mittwoch",
+        "thursday": "Donnerstag",
+        "friday": "Freitag",
+        "saturday": "Samstag",
+        "rain": "Regen",
+        "humidity": "Feuchtigkeit"
+    }
+]
