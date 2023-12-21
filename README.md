@@ -86,6 +86,17 @@ To get the Berlin's current weather and forecast for the next 3 days in German l
 
     `Time | Wind direction/Wind speed (kmh) | WX Description | Temp/DewPoint | Relative Humidity | QNH | [Wind Chill factor] | Rain forecast`
 
+## Add your language
+
+For the time beeing, the languages available are:
+- English (en)
+- French (fr)
+- German (de)
+- Spanish (es)
+- Portuguese (pt)
+- Deutch (nl)
+
+I you want to add a new language or change an existing one, just edit the [`lang/lang.go`](https://github.com/esperlu/weatherCLI/blob/main/lang/lang.go) file to your liking.
 
 ## Wheather data source
 

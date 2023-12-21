@@ -16,9 +16,8 @@ import (
 	"github.com/esperlu/weatherCLI/utils"
 )
 
-// Config
 const (
-	configFile = "/path/to/config.json"
+	configFile = "/home/jeanluc/.config/weatherCLI/config.json"
 	ver        = "1.1"
 )
 
