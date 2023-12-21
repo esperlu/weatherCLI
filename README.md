@@ -89,5 +89,5 @@ To get the Berlin's current weather and forecast for the next 3 days in German l
 
 ## Wheather data source
 
-- API provided by [Weather API](weatherapi.com)
+- API provided by [Weather API](https://weatherapi.com)
 - WeatherAPI Docs [Weather API](https://www.weatherapi.com/docs/)
