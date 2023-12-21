@@ -1,6 +1,9 @@
 # CLI weather app in Go
 
-This CLI application is writen in Go language.
+This CLI application is written in the Go language and is designed to connect to a weather API provided by [weatherAPI](https://www.weatherapi.com/).
+
+The CLI app enables developers to access weather data while working in a console.
+
 
 ## Installation
 
