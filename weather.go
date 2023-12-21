@@ -25,8 +25,8 @@ import (
 	"sync"
 	"time"
 
-	"lacroix.it/lang"
-	"lacroix.it/utils"
+	"github.com/esperlu/weatherCLI/lang"
+	"github.com/esperlu/weatherCLI/utils"
 )
 
 const (
