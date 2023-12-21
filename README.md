@@ -1,5 +1,7 @@
 # CLI weather app in Go
 
+This CLI application is writen in Go laguage.
+
 ## Installation
 
 1. Run the following command to install the weatherCLI repo in the directory defined in your `$GOPATH` environment variable:  
@@ -27,7 +29,7 @@ You have first to create an account on [WeatherAPI](https://www.weatherapi.com/)
         "defaultLanguage": "fr"
     }
 
-The path to `config.json` file is to be set in the `//Config` section of `weather.go`
+The path to `config.json` file is to be set in the `Config` section of `weather.go`
 
     // Config
     const (
@@ -50,14 +52,8 @@ The path to `config.json` file is to be set in the `//Config` section of `weathe
     -f  bool     Print tomorrow's forecast        false
     -v  bool     Print version                    false
 
-The default value for the `language flag` can be changed in the `Flags` section of the code:
+The default value for the `language flag` can be changed in the `config.json` file.
 
-	// Flags
-	daysForecast := flag.Int("d", 5, "Nombre de jours de prévisions")
-	thresholdRain := flag.Int("t", 50, "Threshold % of rain -t 55")
-	tomorrowsForecast := flag.Bool("f", false, "Tomorrow's forecast")
-	language := flag.String("l", "fr", "Language (fr default)")
-	version := flag.Bool("v", false, "Version")
 
 ## Examples
 
