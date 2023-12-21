@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"lacroix.it/lang"
+	"github.com/esperlu/weatherCLI/lang"
 )
 
 var Help = `
