@@ -29,7 +29,7 @@ You have first to create an account on [WeatherAPI](https://www.weatherapi.com/)
         "defaultLanguage": "fr"
     }
 
-The path to `config.json` file is to be set in the `Config` section of `weather.go`
+The path to your `config.json` file is to be set in the `Config` section of `weather.go`
 
     // Config
     const (
