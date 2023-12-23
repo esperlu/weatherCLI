@@ -127,7 +127,7 @@ type Forecast struct {
 }
 
 // Print forecast
-func PrintForecast(forecast Forecast, thresholdRain int, language string) {
+func PrintForecast(forecast Forecast, thresholdRain int, language string) string {
 
 	rainForecast := ""
 	if forecast.ChanceOfRain >= thresholdRain {
@@ -141,7 +141,7 @@ func PrintForecast(forecast Forecast, thresholdRain int, language string) {
 			CReset,
 		)
 	}
-	fmt.Printf(
+	return fmt.Sprintf(
 		"  %s %03d/%.0f %s %.0f/%0.f %d%% %0.f [%0.f°]%s\n",
 		forecast.Time[11:],
 		forecast.WindDir,

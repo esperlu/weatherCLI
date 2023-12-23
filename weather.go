@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"runtime"
+	"sort"
 	"sync"
 	"time"
 
@@ -77,10 +78,14 @@ func main() {
 
 	// Loop through cities in go routines
 	var wg sync.WaitGroup
-	for _, city := range cities {
+	ch := make(chan string, flag.NArg())
+	i := 0
 
+	for _, city := range cities {
+		i += 1
 		wg.Add(1)
-		go func(city string) {
+		go func(city string, i int) {
+
 			defer wg.Done()
 			days := fmt.Sprintf("%d", *daysForecast)
 			url := "https://api.weatherapi.com/v1/forecast.json?key=" + config.APIKey + "&q=" + city + "&days=" + days + "&aqi=no&lang=" + *language
@@ -117,16 +122,17 @@ func main() {
 			// Print current wx
 			sunRise := utils.FormatPMtime(wx.Forecast.ForecastDay[0].Astro.SunRise)
 			sunSet := utils.FormatPMtime(wx.Forecast.ForecastDay[0].Astro.SunSet)
-			fmt.Printf(
-				"\n%s%s - %s (%.2f,%.2f) %s-%s %s",
+			outputString := fmt.Sprintf(
+				"\n%s%d- %s - %s (%.2f,%.2f) %s-%s %s",
 				utils.CGreen,
+				i,
 				wx.Location.Name,
 				wx.Location.Country,
 				wx.Location.Lat, wx.Location.Long,
 				sunRise, sunSet,
 				utils.CReset,
 			)
-			fmt.Printf(
+			outputString += fmt.Sprintf(
 				"\n%s %03d/%.0f %.0f %s"+
 					" %.0f/%.0f %d%% Q%.0f [%.0f°]\n"+
 					"%s:\n",
@@ -150,7 +156,7 @@ func main() {
 					continue
 				}
 
-				utils.PrintForecast(forecast, *thresholdRain, *language)
+				outputString += utils.PrintForecast(forecast, *thresholdRain, *language)
 
 			}
 
@@ -165,7 +171,7 @@ func main() {
 					panic(err)
 				}
 				weekDay := fmt.Sprintf("%s", date.Weekday())
-				fmt.Printf("%s - %-9s",
+				outputString += fmt.Sprintf("%s - %-9s",
 					forecast.Date,
 					lang.Language(*language)[weekDay],
 				)
@@ -188,7 +194,7 @@ func main() {
 				}
 
 				// Print forecast
-				fmt.Printf(
+				outputString += fmt.Sprintf(
 					" %s %.0f->%.0f° %.0f kmh %s %.0f%% %s %s\n",
 					forecast.Day.Condition.Text,
 					forecast.Day.MinTemp,
@@ -211,14 +217,31 @@ func main() {
 							tomorrow.Time[11:] > "22:00" {
 							continue
 						}
-						utils.PrintForecast(tomorrow, *thresholdRain, *language)
+						outputString += utils.PrintForecast(tomorrow, *thresholdRain, *language)
 					}
 				}
 
 			}
-		}(city)
+
+			ch <- outputString
+		}(city, i)
 	}
+
 	wg.Wait()
+	close(ch)
+
+	var values []string
+	for val := range ch {
+		values = append(values, val)
+	}
+
+	// Sort the output to preserve the arguments order
+	sort.Strings(values)
+
+	// Print final output
+	for _, value := range values {
+		fmt.Println(value)
+	}
 
 	// print timing
 	fmt.Printf(
