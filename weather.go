@@ -72,13 +72,15 @@ func main() {
 	cities := flag.Args()
 
 	// Default city
-	if flag.NArg() == 0 {
+	nbArgs := flag.NArg()
+	if nbArgs == 0 {
 		cities = []string{config.DefaultCity}
+		nbArgs = 1
 	}
 
 	// Loop through cities in go routines
 	var wg sync.WaitGroup
-	ch := make(chan string, flag.NArg())
+	ch := make(chan string, nbArgs)
 	i := 0
 
 	for _, city := range cities {
