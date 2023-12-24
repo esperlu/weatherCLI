@@ -80,8 +80,8 @@ func main() {
 
 	// Loop through cities in go routines
 	var wg sync.WaitGroup
+	var i int
 	ch := make(chan string, nbArgs)
-	i := 0
 
 	for _, city := range cities {
 		i += 1
@@ -125,9 +125,9 @@ func main() {
 			sunRise := utils.FormatPMtime(wx.Forecast.ForecastDay[0].Astro.SunRise)
 			sunSet := utils.FormatPMtime(wx.Forecast.ForecastDay[0].Astro.SunSet)
 			outputString := fmt.Sprintf(
-				"\n%s%d- %s - %s (%.2f,%.2f) %s-%s %s",
-				utils.CGreen,
+				"%d- %s%s - %s (%.2f,%.2f) %s-%s %s",
 				i,
+				utils.CGreen,
 				wx.Location.Name,
 				wx.Location.Country,
 				wx.Location.Lat, wx.Location.Long,
@@ -232,6 +232,7 @@ func main() {
 	wg.Wait()
 	close(ch)
 
+	// Read channel
 	var values []string
 	for val := range ch {
 		values = append(values, val)
@@ -242,7 +243,8 @@ func main() {
 
 	// Print final output
 	for _, value := range values {
-		fmt.Println(value)
+		fmt.Println(value[3:])
+		return
 	}
 
 	// print timing
