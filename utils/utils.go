@@ -68,17 +68,18 @@ type Weather struct {
 		Long    float32 `json:"lon"`
 	} `json:"location"`
 	Current struct {
-		LastUpdate string  `json:"last_updated"`
-		Temp       float32 `json:"temp_c"`
-		Wind       float32 `json:"wind_kph"`
-		WindDir    string  `json:"wind_dir"`
-		WindDegree int     `json:"wind_degree"`
-		Qnh        float32 `json:"pressure_mb"`
-		FeelsLike  float32 `json:"feelslike_c"`
-		Humidity   int     `json:"humidity"`
-		Visibility float32 `json:"vis_km"`
-		Uv         float32 `json:"uv"`
-		Condition  struct {
+		LastUpdate    string  `json:"last_updated"`
+		Temp          float32 `json:"temp_c"`
+		Wind          float32 `json:"wind_kph"`
+		WindDir       string  `json:"wind_dir"`
+		WindDegree    int     `json:"wind_degree"`
+		Qnh           float32 `json:"pressure_mb"`
+		FeelsLike     float32 `json:"feelslike_c"`
+		Precipitation float32 `json:"precip_mm"`
+		Humidity      int     `json:"humidity"`
+		Visibility    float32 `json:"vis_km"`
+		Uv            float32 `json:"uv"`
+		Condition     struct {
 			Text string `json:"text"`
 		} `json:"condition"`
 	} `json:"current"`
@@ -132,10 +133,9 @@ func PrintForecast(forecast Forecast, thresholdRain int, language string) string
 	rainForecast := ""
 	if forecast.ChanceOfRain >= thresholdRain {
 		rainForecast = fmt.Sprintf(
-			"%s %s: %d%% %.0fmm%s",
+			"%s %s: %d%% %.2fmm%s",
 			CRed,
 			lang.Language(language)["rain"],
-
 			forecast.ChanceOfRain,
 			forecast.Precipitation,
 			CReset,

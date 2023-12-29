@@ -10,6 +10,7 @@ import (
 	"os"
 	"runtime"
 	"sort"
+	"strings"
 	"sync"
 	"time"
 
@@ -22,7 +23,7 @@ const (
 	ver        = "1.1"
 )
 
-// Config struct
+// Config struct to assign values from config.json
 type Config struct {
 	APIKey                  string `json:"APIkey"`
 	DefaultCity             string `json:"defaultCity"`
@@ -84,7 +85,7 @@ func main() {
 	ch := make(chan string, nbArgs)
 
 	for _, city := range cities {
-		i += 1
+		i++
 		wg.Add(1)
 		go func(city string, i int) {
 
@@ -125,7 +126,7 @@ func main() {
 			sunRise := utils.FormatPMtime(wx.Forecast.ForecastDay[0].Astro.SunRise)
 			sunSet := utils.FormatPMtime(wx.Forecast.ForecastDay[0].Astro.SunSet)
 			outputString := fmt.Sprintf(
-				"%d- %s%s - %s (%.2f,%.2f) %s-%s %s",
+				"%d-%s%s - %s (%.2f,%.2f) %s-%s %s",
 				i,
 				utils.CGreen,
 				wx.Location.Name,
@@ -134,9 +135,22 @@ func main() {
 				sunRise, sunSet,
 				utils.CReset,
 			)
+
+			// If rain in current wx
+			var currentPrecipitation string
+			if wx.Current.Precipitation > 0 {
+				currentPrecipitation = fmt.Sprintf(
+					"%s%s:%.2fmm%s",
+					utils.CRed,
+					lang.Language(*language)["rain"],
+					wx.Current.Precipitation,
+					utils.CReset,
+				)
+			}
+
 			outputString += fmt.Sprintf(
 				"\n%s %03d/%.0f %.0f %s"+
-					" %.0f/%.0f %d%% Q%.0f [%.0f°]\n"+
+					" %.0f/%.0f %d%% Q%.0f [%.0f°] %s\n"+
 					"%s:\n",
 				wx.Current.LastUpdate[11:],
 				wx.Current.WindDegree,
@@ -148,6 +162,7 @@ func main() {
 				wx.Current.Humidity,
 				wx.Current.Qnh,
 				wx.Current.FeelsLike,
+				currentPrecipitation,
 				lang.Language(*language)["Forecast for the day"],
 			)
 
@@ -241,18 +256,18 @@ func main() {
 	// Sort the output to preserve the arguments order
 	sort.Strings(values)
 
-	// Print final output
+	// Print final output (omitting the int used to sort the args)
 	for _, value := range values {
-		fmt.Println(value[3:])
-		return
+		dashPos := strings.Index(value, "-") + 1
+		fmt.Println(value[dashPos:])
 	}
 
 	// print timing
 	fmt.Printf(
-		"\n%s\n%s | %0.3f sec.\n",
-		"Source: WeatherAPI https://www.weatherapi.com",
+		"%s | %0.3f sec.\n%s\n",
 		utils.PrintProgName(ver),
 		time.Since(startTime).Seconds(),
+		"Source: WeatherAPI https://www.weatherapi.com",
 	)
 
 }
