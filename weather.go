@@ -167,22 +167,35 @@ func main() {
 			)
 
 			//  Print forecast of day 0 (today)
+			var previousMmRain float32
+			var arrow rune
 			for _, forecast := range wx.Forecast.ForecastDay[0].Hour {
 
 				if int(time.Now().Unix()) >= forecast.TimeEpoch {
 					continue
 				}
 
-				outputString += utils.PrintForecast(forecast, *thresholdRain, *language)
+				if forecast.Precipitation > previousMmRain {
+					arrow = utils.UpArrow
+					previousMmRain = forecast.Precipitation
+				}
+				if forecast.Precipitation < previousMmRain {
+					arrow = utils.DownArrow
+					previousMmRain = forecast.Precipitation
+				}
+
+				outputString += utils.PrintForecast(forecast, arrow, *thresholdRain, *language)
 
 			}
 
 			// Print forecast days after today
+
 			for _, forecast := range wx.Forecast.ForecastDay {
 				// skip current day
 				if int(time.Now().Unix()) >= forecast.DateEpoch {
 					continue
 				}
+
 				date, err := time.Parse("2006-01-02", forecast.Date)
 				if err != nil {
 					panic(err)
@@ -201,7 +214,7 @@ func main() {
 				}
 				if forecast.Day.ChanceOfRain > 0 {
 					rainForecast = fmt.Sprintf(
-						"%s %s: %d%% %.0fmm%s",
+						"%s %s: %d%% %.2fmm%s",
 						red,
 						lang.Language(*language)["rain"],
 						forecast.Day.ChanceOfRain,
@@ -234,7 +247,7 @@ func main() {
 							tomorrow.Time[11:] > "22:00" {
 							continue
 						}
-						outputString += utils.PrintForecast(tomorrow, *thresholdRain, *language)
+						outputString += utils.PrintForecast(tomorrow, arrow, *thresholdRain, *language)
 					}
 				}
 

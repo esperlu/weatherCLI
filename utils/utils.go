@@ -54,6 +54,10 @@ const (
 	CReset = "\033[0m"
 	CRed   = "\033[31m"
 	CGreen = "\033[32m"
+	// UpArrow   = '\u2191'
+	// DownArrow = '\u2193'
+	UpArrow   = '\u2197'
+	DownArrow = '\u2198'
 )
 
 // JSON struct
@@ -128,16 +132,17 @@ type Forecast struct {
 }
 
 // Print forecast
-func PrintForecast(forecast Forecast, thresholdRain int, language string) string {
+func PrintForecast(forecast Forecast, arrow rune, thresholdRain int, language string) string {
 
 	rainForecast := ""
 	if forecast.ChanceOfRain >= thresholdRain {
 		rainForecast = fmt.Sprintf(
-			"%s %s: %d%% %.2fmm%s",
+			"%s %s: %d%% %.2fmm %c%s",
 			CRed,
 			lang.Language(language)["rain"],
 			forecast.ChanceOfRain,
 			forecast.Precipitation,
+			arrow,
 			CReset,
 		)
 	}
