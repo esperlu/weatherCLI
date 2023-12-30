@@ -51,13 +51,11 @@ func PrintProgName(ver string) string {
 
 // Couleurs
 const (
-	CReset = "\033[0m"
-	CRed   = "\033[31m"
-	CGreen = "\033[32m"
-	// UpArrow   = '\u2191'
-	// DownArrow = '\u2193'
-	UpArrow   = '\u2197'
-	DownArrow = '\u2198'
+	CReset    = "\033[0m"
+	CRed      = "\033[31m"
+	CGreen    = "\033[32m"
+	UpArrow   = '\u2191'
+	DownArrow = '\u2193'
 )
 
 // JSON struct
