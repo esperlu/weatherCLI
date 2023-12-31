@@ -54,8 +54,8 @@ const (
 	CReset    = "\033[0m"
 	CRed      = "\033[31m"
 	CGreen    = "\033[32m"
-	UpArrow   = '\u2191'
-	DownArrow = '\u2193'
+	UpArrow   = '\u2197'
+	DownArrow = '\u2198'
 )
 
 // JSON struct
@@ -158,4 +158,22 @@ func PrintForecast(forecast Forecast, arrow rune, thresholdRain int, language st
 		rainForecast,
 	)
 
+}
+
+// WhichArrow determine the rain trend
+// returns the arrow rune and previous precipitation value
+func WhichArrow(previousRain float32, forecast Forecast) (rune, float32) {
+
+	// Firts line of forecast or no change from previous
+	if previousRain == 9999.0 || forecast.Precipitation == previousRain {
+		previousRain = forecast.Precipitation
+		return 0, 0
+	}
+
+	// UpArrow
+	if forecast.Precipitation > previousRain {
+		return UpArrow, forecast.Precipitation
+	}
+	// DownArrow
+	return DownArrow, forecast.Precipitation
 }

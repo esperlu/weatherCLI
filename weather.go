@@ -167,29 +167,22 @@ func main() {
 			)
 
 			//  Print forecast of day 0 (today)
-			var previousMmRain float32
+			var previousRain float32 = 9999.0
 			var arrow rune
 			for _, forecast := range wx.Forecast.ForecastDay[0].Hour {
 
-				if int(time.Now().Unix()) >= forecast.TimeEpoch {
+				if int(time.Now().Unix()) > forecast.TimeEpoch {
 					continue
 				}
 
-				if forecast.Precipitation > previousMmRain {
-					arrow = utils.UpArrow
-					previousMmRain = forecast.Precipitation
-				}
-				if forecast.Precipitation < previousMmRain {
-					arrow = utils.DownArrow
-					previousMmRain = forecast.Precipitation
-				}
-
+				// Test rain trend and assign arrow value and previousRain
+				arrow, previousRain = utils.WhichArrow(previousRain, forecast)
+				// Print to output
 				outputString += utils.PrintForecast(forecast, arrow, *thresholdRain, *language)
 
 			}
 
 			// Print forecast days after today
-
 			for _, forecast := range wx.Forecast.ForecastDay {
 				// skip current day
 				if int(time.Now().Unix()) >= forecast.DateEpoch {
@@ -237,6 +230,8 @@ func main() {
 				)
 
 				// print forecast for tomorrow only
+				previousRain = 9999.0
+				arrow = 0
 				if *tomerrowForecast {
 					for _, tomorrow := range forecast.Hour {
 						tomorrowTime := time.Now().AddDate(0, 0, 1)
@@ -247,6 +242,10 @@ func main() {
 							tomorrow.Time[11:] > "22:00" {
 							continue
 						}
+
+						// Test rain trend and assign arrow value and previousRain
+						arrow, previousRain = utils.WhichArrow(previousRain, tomorrow)
+						// Print to output
 						outputString += utils.PrintForecast(tomorrow, arrow, *thresholdRain, *language)
 					}
 				}
