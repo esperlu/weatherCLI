@@ -176,7 +176,7 @@ func main() {
 				}
 
 				// Test rain trend and assign arrow value and previousRain
-				arrow, previousRain = utils.WhichArrow(previousRain, forecast)
+				arrow, previousRain = utils.RainTrendArrow(previousRain, forecast)
 				// Print to output
 				outputString += utils.PrintForecast(forecast, arrow, *thresholdRain, *language)
 
@@ -244,7 +244,7 @@ func main() {
 						}
 
 						// Test rain trend and assign arrow value and previousRain
-						arrow, previousRain = utils.WhichArrow(previousRain, tomorrow)
+						arrow, previousRain = utils.RainTrendArrow(previousRain, tomorrow)
 						// Print to output
 						outputString += utils.PrintForecast(tomorrow, arrow, *thresholdRain, *language)
 					}
