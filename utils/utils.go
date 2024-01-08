@@ -137,7 +137,7 @@ func PrintForecast(forecast Forecast, arrow rune, thresholdRain int, language st
 		rainForecast = fmt.Sprintf(
 			"%s %s: %d%% %.2fmm %c%s",
 			CRed,
-			lang.Language(language)["rain"],
+			lang.Language(language)["precipitation"],
 			forecast.ChanceOfRain,
 			forecast.Precipitation,
 			arrow,
@@ -160,7 +160,7 @@ func PrintForecast(forecast Forecast, arrow rune, thresholdRain int, language st
 
 }
 
-// rainTrendArrow determine the rain trend
+// RainTrendArrow determine the rain trend
 // returns the arrow rune and previous precipitation value
 func RainTrendArrow(previousRain float32, forecast Forecast) (rune, float32) {
 

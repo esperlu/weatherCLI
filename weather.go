@@ -142,7 +142,7 @@ func main() {
 				currentPrecipitation = fmt.Sprintf(
 					"%s%s:%.2fmm%s",
 					utils.CRed,
-					lang.Language(*language)["rain"],
+					lang.Language(*language)["precipitation"],
 					wx.Current.Precipitation,
 					utils.CReset,
 				)
@@ -209,7 +209,7 @@ func main() {
 					rainForecast = fmt.Sprintf(
 						"%s %s: %d%% %.2fmm%s",
 						red,
-						lang.Language(*language)["rain"],
+						lang.Language(*language)["precipitation"],
 						forecast.Day.ChanceOfRain,
 						forecast.Day.Precipitation,
 						utils.CReset,

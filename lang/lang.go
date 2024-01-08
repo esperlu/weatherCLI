@@ -13,7 +13,7 @@ func Language(code string) map[string]string {
 		"Thursday":             "Thursday",
 		"Friday":               "Friday",
 		"Saturday":             "Saturday",
-		"rain":                 "rain",
+		"precipitation":        "precipitation",
 		"Forecast for the day": "Forecast for the day",
 		"humidity":             "humidity",
 	}
@@ -26,7 +26,7 @@ func Language(code string) map[string]string {
 		"Thursday":             "Jeudi",
 		"Friday":               "Vendredi",
 		"Saturday":             "Samedi",
-		"rain":                 "pluie",
+		"precipitation":        "precipitation",
 		"Forecast for the day": "Prévisions du jour",
 		"humidity":             "humidité",
 	}
@@ -40,7 +40,7 @@ func Language(code string) map[string]string {
 		"Friday":               "Freitag",
 		"Saturday":             "Samstag",
 		"Forecast for the day": "Die heutige Wettervorhersage",
-		"rain":                 "Regen",
+		"precipitation":        "Niederschlag",
 		"humidity":             "Luftfeuchtigkeit",
 	}
 
@@ -53,7 +53,7 @@ func Language(code string) map[string]string {
 		"Friday":               "Viernes",
 		"Saturday":             "Sabado",
 		"Forecast for the day": "Pronóstico del día",
-		"rain":                 "lluvia",
+		"precipitation":        "precipitación",
 		"humidity":             "humedad",
 	}
 
@@ -66,7 +66,7 @@ func Language(code string) map[string]string {
 		"Friday":               "Sexta",
 		"Saturday":             "Sabado",
 		"Forecast for the day": "Previsão para hoje",
-		"rain":                 "chuva",
+		"precipitation":        "precipitação",
 		"humidity":             "umidade",
 	}
 
@@ -79,7 +79,7 @@ func Language(code string) map[string]string {
 		"Friday":               "Vrijdag",
 		"Saturday":             "Zaterdag",
 		"Forecast for the day": "Verwachtingen voor volgende uren",
-		"rain":                 "regen",
+		"precipitation":        "neerslag",
 		"humidity":             "vochtigheid",
 	}
 
