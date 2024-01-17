@@ -164,10 +164,10 @@ func PrintForecast(forecast Forecast, arrow rune, thresholdRain int, language st
 // returns the arrow rune and previous precipitation value
 func RainTrendArrow(previousRain float32, forecast Forecast) (rune, float32) {
 
-	// Firts line of forecast or no change from previous
+	// First line of forecast or no change from previous
 	if previousRain == 9999.0 || forecast.Precipitation == previousRain {
 		previousRain = forecast.Precipitation
-		return 0, 0
+		return 0, previousRain
 	}
 
 	// UpArrow

@@ -92,23 +92,23 @@ func main() {
 			defer wg.Done()
 			days := fmt.Sprintf("%d", *daysForecast)
 			url := "https://api.weatherapi.com/v1/forecast.json?key=" + config.APIKey + "&q=" + city + "&days=" + days + "&aqi=no&lang=" + *language
-
+			fmt.Println(url)
 			resp, err := http.Get(url)
 			if err != nil {
-				panic(err)
+				log.Fatal(err)
 			}
 			defer resp.Body.Close()
 
 			body, err := io.ReadAll(resp.Body)
 			if err != nil {
-				panic(err)
+				log.Fatal(err)
 			}
 
 			// Unmarshal JSON response.Body
 			var wx utils.Weather
 			err = json.Unmarshal(body, &wx)
 			if err != nil {
-				panic(err)
+				log.Fatal(err)
 			}
 
 			// Print API error message
@@ -191,7 +191,7 @@ func main() {
 
 				date, err := time.Parse("2006-01-02", forecast.Date)
 				if err != nil {
-					panic(err)
+					log.Fatal(err)
 				}
 				weekDay := fmt.Sprintf("%s", date.Weekday())
 				outputString += fmt.Sprintf("%s - %-9s",
