@@ -92,7 +92,7 @@ func main() {
 			defer wg.Done()
 			days := fmt.Sprintf("%d", *daysForecast)
 			url := "https://api.weatherapi.com/v1/forecast.json?key=" + config.APIKey + "&q=" + city + "&days=" + days + "&aqi=no&lang=" + *language
-			fmt.Println(url)
+
 			resp, err := http.Get(url)
 			if err != nil {
 				log.Fatal(err)
